@@ -1,0 +1,36 @@
+{% extends 'portfolio\base.html' %}
+
+{% block content %}
+{% load static %}
+
+    <h1 class="text-center">{{image.title}}</h1>
+
+    <img class="rounded mx-auto d-block shadow p-3 mb-3 bg-white rounded" src="{{image.home_image.url}}" height="50%" width="50%">
+
+    <h2 class="text-center ">{{image.des}}</h2>
+    
+    <div class="card-group mt-1 shadow p-2 mb-3 bg-white rounded">
+        {% for project in projects %}
+        <div class="card ">
+        {% if project.url %}
+        <a href="{{project.url}}">
+          <img src="{{project.image.url}}" class="card-img-top" alt="...">
+        </a>
+        {% else %}
+        <img src="{{project.image.url}}" class="card-img-top" alt="...">
+        {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{project.title}}</h5>
+            <p class="card-text">{{project.description|truncatechars:25}}</p>
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>
+    
+
+
+    
+
+
+{% endblock %}
